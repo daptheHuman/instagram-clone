@@ -18,8 +18,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-console.log('firebase', app, db);
-
 // Call seedDatabase() to seed the database with data
 // seedDatabase(db);
 

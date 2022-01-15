@@ -48,13 +48,17 @@ const Register = () => {
         // Add the user data to the users collection
         await addProfile(user, username);
 
-        console.log('Successfully created user!');
+        // Redirect to the dashboard
         navigate(DASHBOARD);
       } catch (error) {
         console.log(error);
+
+        // Reset the form
         setEmail('');
         setUsername('');
         setPassword('');
+
+        // Set the error message
         setErrorMsg(error.message);
       }
     } else {

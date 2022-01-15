@@ -29,11 +29,15 @@ const Login = () => {
     try {
       const auth = getAuth();
       signInWithEmailAndPassword(auth, email, password);
-      console.log('Successfully logged in!');
+
+      // Redirect to the dashboard
       navigate(DASHBOARD);
     } catch (error) {
+      // Reset the form
       setEmail('');
       setPassword('');
+
+      // Set the error message
       setErrorMsg(error.message);
     }
   };
