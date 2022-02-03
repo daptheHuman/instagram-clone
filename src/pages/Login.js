@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import FirebaseContext from '../contexts/firebase';
 
 import { DASHBOARD } from '../constants/routes';
 
 const Login = () => {
   const navigate = useNavigate();
-  const firebase = useContext(FirebaseContext);
 
   // Credentials state
   const [email, setEmail] = useState('');
@@ -15,8 +13,6 @@ const Login = () => {
   const [errorMsg, setErrorMsg] = useState('');
 
   const isInvalid = password === '' || email === '';
-
-  console.log(firebase);
 
   // Initial render
   useEffect(() => {

@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import Header from '../components/Header';
 
 const NotFound = () => {
   useEffect(() => {
@@ -8,6 +9,7 @@ const NotFound = () => {
   }, []);
   return (
     <div className="text-neutral-700 text-center m-10">
+      <Header />
       <p className="text-2xl font-semibold mb-5 ">
         Sorry, this page isn't available.
       </p>

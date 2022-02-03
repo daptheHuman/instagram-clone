@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 // import seedDatabase from '../seed';
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -17,8 +18,9 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const storage = getStorage();
 
 // Call seedDatabase() to seed the database with data
 // seedDatabase(db);
 
-export { app, db };
+export { app, db, storage };

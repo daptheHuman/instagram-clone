@@ -31,8 +31,11 @@
 
     "react/jsx-uses-vars": "error",
     "react/jsx-uses-react": "error",
+    "react/jsx-props-no-spreading": "off",
     "no-console": "off",
     "no-unused-vars": "warn",
+    "no-nested-ternary": "off",
+    "no-param-reassign": ["error", { "props": false }],
     "import/no-named-as-default": ["off"],
     "import/no-named-as-default-member": ["off"],
     "jsx-a11y/href-no-hash": ["off"],

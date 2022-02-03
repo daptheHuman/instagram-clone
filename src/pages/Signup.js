@@ -1,18 +1,16 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import {
   getAuth,
   updateProfile,
   createUserWithEmailAndPassword,
 } from 'firebase/auth';
-import FirebaseContext from '../contexts/firebase';
 
 import { DASHBOARD } from '../constants/routes';
 import { doesUsernameExist, addProfile } from '../services/firebase';
 
 const Register = () => {
   const navigate = useNavigate();
-  const firebase = useContext(FirebaseContext);
 
   // Credentials state
   const [email, setEmail] = useState('');
@@ -33,7 +31,6 @@ const Register = () => {
     event.preventDefault();
 
     const usernameExist = await doesUsernameExist(username);
-    console.log(usernameExist);
     if (!usernameExist) {
       try {
         const auth = getAuth();
@@ -51,8 +48,6 @@ const Register = () => {
         // Redirect to the dashboard
         navigate(DASHBOARD);
       } catch (error) {
-        console.log(error);
-
         // Reset the form
         setEmail('');
         setUsername('');
