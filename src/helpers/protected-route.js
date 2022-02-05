@@ -8,8 +8,12 @@ const ProtectedRoute = ({ user, children }) => {
 };
 
 ProtectedRoute.propTypes = {
-  user: propTypes.objectOf(propTypes.any).isRequired,
+  user: propTypes.objectOf(propTypes.any),
   children: propTypes.node.isRequired,
+};
+
+ProtectedRoute.defaultProps = {
+  user: null,
 };
 
 export default ProtectedRoute;
