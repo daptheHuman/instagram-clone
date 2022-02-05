@@ -1,18 +1,14 @@
 import React from 'react';
 
 // Icons
-import {
-  AiOutlineSearch,
-  AiFillHome,
-  AiOutlineCompass,
-  AiOutlineHeart,
-} from 'react-icons/ai';
+import { AiFillHome, AiOutlineCompass, AiOutlineHeart } from 'react-icons/ai';
 import { RiMessengerLine } from 'react-icons/ri';
 import { FiPlusSquare } from 'react-icons/fi';
 
 import { Link } from 'react-router-dom';
 import { LOGIN, SIGNUP, DASHBOARD, SETTINGS } from '../constants/routes';
 import useUser from '../hooks/use-user';
+import Searchbar from './Searchbar';
 
 const Header = () => {
   const { username, photoURL } = useUser() || {};
@@ -29,22 +25,7 @@ const Header = () => {
         </div>
 
         {/* Searchbar */}
-        <div className="hidden shrink bg-gray-100 px-5 rounded-lg text-gray-400  xl:justify-center md:flex">
-          <button
-            className="btn btn-outline-secondary"
-            type="button"
-            id="button-addon2"
-          >
-            <AiOutlineSearch />
-          </button>
-          <input
-            type="text"
-            className="active:bg-transparent focus:bg-transparent focus:outline-none placeholder:text-gray-400 bg-transparent  text-black border-none w-full p-2"
-            placeholder="Search"
-            aria-label="Recipient's username"
-            aria-describedby="button-addon2"
-          />
-        </div>
+        <Searchbar />
 
         {username ? (
           /* Navigation */
