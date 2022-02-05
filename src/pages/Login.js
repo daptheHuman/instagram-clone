@@ -24,7 +24,7 @@ const Login = () => {
 
     try {
       const auth = getAuth();
-      signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
 
       // Redirect to the dashboard
       navigate(DASHBOARD);
@@ -34,7 +34,21 @@ const Login = () => {
       setPassword('');
 
       // Set the error message
-      setErrorMsg(error.message);
+      switch (error.code) {
+        case 'auth/user-not-found':
+          setErrorMsg('User not found');
+          break;
+        case 'auth/wrong-password':
+          setErrorMsg('Wrong password');
+          break;
+        case 'auth/too-many-requests':
+          setErrorMsg('Too many requests, try again later');
+          break;
+        default:
+          setErrorMsg('Something went wrong');
+          break;
+      }
+      console.error(error.message);
     }
   };
   return (
@@ -57,6 +71,7 @@ const Login = () => {
             >
               <input
                 className="text-xs bg-[#fafafa]  w-full border border-gray-200 focus:outline focus:outline-gray-400 rounded-[4px]  px-2 py-2 my-0.5"
+                autoComplete="username"
                 type="text"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -64,6 +79,7 @@ const Login = () => {
               />
               <input
                 className="text-xs bg-[#fafafa]  w-full border border-gray-200 focus:outline focus:outline-gray-400 rounded-[4px]  px-2 py-2 my-0.5"
+                autoComplete="current-password"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
