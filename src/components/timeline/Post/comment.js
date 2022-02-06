@@ -2,15 +2,19 @@ import React from 'react';
 import propTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-const Comment = ({ allComments: comments }) => {
+const Comment = ({ allComments: comments, setModalActive }) => {
   return (
-    <div className=" ">
+    <div className="px-6">
       {comments.length >= 3 ? (
         <div>
-          <p className="font-thin text-gray-500">
+          <button
+            type="button"
+            className="font-thin text-gray-500"
+            onClick={() => setModalActive(true)}
+          >
             {' '}
             View all {comments.length} comments
-          </p>
+          </button>
         </div>
       ) : (
         comments.slice(0, 3).map((comment) => (
@@ -28,6 +32,10 @@ const Comment = ({ allComments: comments }) => {
 
 Comment.propTypes = {
   allComments: propTypes.arrayOf(propTypes.object).isRequired,
+  setModalActive: propTypes.func,
 };
 
+Comment.defaultProps = {
+  setModalActive: () => {},
+};
 export default Comment;

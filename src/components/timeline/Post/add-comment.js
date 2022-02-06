@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import { updateComment } from '../../../services/firebase';
 import useUser from '../../../hooks/use-user';
 
-const AddComment = ({ docId, setComments, comments }) => {
+const AddComment = ({ docId, comments, setComments }) => {
   const [inputComment, setInputComment] = useState('');
   const { username } = useUser();
 
