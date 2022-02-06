@@ -103,7 +103,7 @@ const Modal = (props) => {
             </div>
 
             {/* Footer */}
-            <div className="flex-initial h-32 border-t border-gray-200 p-2 flex-col flex min-h-max h-10">
+            <div className="flex-initial h-32 border-t border-gray-200 p-2 flex-col flex min-h-max ">
               <Action
                 docId={docId}
                 isLiked={isLiked}
