@@ -62,6 +62,7 @@ const Post = (props) => {
             isModal={false}
           />
         </div>
+<<<<<<< HEAD
         <div className="px-6">
           <Comment allComments={comments} setModalActive={setModalActive} />
           <TimeAgo dateCreated={dateCreated} />
@@ -71,6 +72,15 @@ const Post = (props) => {
             setComments={setComments}
           />
         </div>
+=======
+        <Comment allComments={comments} setModalActive={setModalActive} />
+        <TimeAgo dateCreated={dateCreated} />
+        <AddComment
+          docId={docId}
+          comments={comments}
+          setComments={setComments}
+        />
+>>>>>>> 1c4366642e8ecbc0905855a6e84f1188f9b17c1d
       </div>
     );
   }
