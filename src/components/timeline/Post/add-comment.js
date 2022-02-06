@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 import { updateComment } from '../../../services/firebase';
 import useUser from '../../../hooks/use-user';
 
-const AddComment = ({ docId, setComments, comments }) => {
+const AddComment = ({ docId, comments, setComments, inputRef }) => {
   const [inputComment, setInputComment] = useState('');
   const { username } = useUser();
 
@@ -25,6 +25,7 @@ const AddComment = ({ docId, setComments, comments }) => {
         className="grow p-2 text-sm focus:outline-none"
         placeholder="Add a comment..."
         value={inputComment}
+        ref={inputRef}
         onChange={(e) => setInputComment(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === 'Enter') {
@@ -49,6 +50,11 @@ AddComment.propTypes = {
   docId: propTypes.string.isRequired,
   setComments: propTypes.func.isRequired,
   comments: propTypes.arrayOf(propTypes.object, propTypes.string).isRequired,
+  inputRef: propTypes.objectOf(propTypes.any),
+};
+
+AddComment.defaultProps = {
+  inputRef: null,
 };
 
 export default AddComment;

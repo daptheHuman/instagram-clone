@@ -9,7 +9,13 @@ import {
 import UserContext from '../../../contexts/user';
 import { updateLike } from '../../../services/firebase';
 
-const Action = ({ docId, isLiked, likesCount, setLikesCount }) => {
+const Action = ({
+  docId,
+  isLiked,
+  likesCount,
+  setLikesCount,
+  setModalActive,
+}) => {
   const [toggleLiked, setToggleLiked] = useState(isLiked);
   const { uid } = useContext(UserContext) || {};
 
@@ -41,7 +47,11 @@ const Action = ({ docId, isLiked, likesCount, setLikesCount }) => {
             onClick={handleLike}
           />
         )}
-        <AiOutlineMessage className="inline-block " size={25} />
+        <AiOutlineMessage
+          className="inline-block "
+          size={25}
+          onClick={() => setModalActive(true)}
+        />
         <AiOutlineSend className="inline-block " size={25} />
       </div>
     </div>
@@ -53,6 +63,7 @@ Action.propTypes = {
   isLiked: propTypes.bool.isRequired,
   likesCount: propTypes.number.isRequired,
   setLikesCount: propTypes.func.isRequired,
+  setModalActive: propTypes.func.isRequired,
 };
 
 export default Action;

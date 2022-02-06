@@ -5,6 +5,9 @@ import Image from './image';
 import Action from './action';
 import Detail from './detail';
 import AddComment from './add-comment';
+import Modal from '../../Modal';
+import Comment from './comment';
+import TimeAgo from './timeago';
 
 const Post = (props) => {
   const {
@@ -21,31 +24,57 @@ const Post = (props) => {
 
   const [comments, setComments] = useState(allComments);
   const [likesCount, setLikesCount] = useState(likes.length);
+  const [modalActive, setModalActive] = useState(false);
 
-  return (
-    <div className="bg-white border pt-4">
-      <Header username={username} avatar={avatar} />
-      <Image imageSrc={imageSrc} caption={caption} />
-
-      <div className="px-6 ">
-        <Action
-          docId={docId}
-          likes={likes}
-          isLiked={isLiked}
-          likesCount={likesCount}
-          setLikesCount={setLikesCount}
-        />
-        <Detail
-          username={username}
-          dateCreated={dateCreated}
-          caption={caption}
-          comments={comments}
-          likesCount={likesCount}
-        />
+  if (props) {
+    return (
+      <div className="bg-white border pt-4">
+        {modalActive && (
+          <Modal
+            docId={docId}
+            username={username}
+            avatar={avatar}
+            caption={caption}
+            imageSrc={imageSrc}
+            allComments={comments}
+            setComments={setComments}
+            dateCreated={dateCreated}
+            likesCount={likesCount}
+            setLikesCount={setLikesCount}
+            isLiked={isLiked}
+            setModalActive={setModalActive}
+          />
+        )}
+        <Header username={username} avatar={avatar} />
+        <Image imageSrc={imageSrc} caption={caption} />
+        <div className="px-6 ">
+          <Action
+            docId={docId}
+            isLiked={isLiked}
+            likesCount={likesCount}
+            setLikesCount={setLikesCount}
+            setModalActive={setModalActive}
+          />
+          <Detail
+            username={username}
+            caption={caption}
+            likesCount={likesCount}
+            isModal={false}
+          />
+        </div>
+        <div className="px-6">
+          <Comment allComments={comments} setModalActive={setModalActive} />
+          <TimeAgo dateCreated={dateCreated} />
+          <AddComment
+            docId={docId}
+            comments={comments}
+            setComments={setComments}
+          />
+        </div>
       </div>
-      <AddComment docId={docId} comments={comments} setComments={setComments} />
-    </div>
-  );
+    );
+  }
+  return null;
 };
 
 Post.propTypes = {
